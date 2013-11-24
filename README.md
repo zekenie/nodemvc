@@ -1,5 +1,8 @@
-# Express train template
+# NodeMVC
 
-This is the default template that ships with express-train, the nodejs framework based on express 3. To find out more, visit:
+This is a graphical tool to generate scaffolding for [Express-Train](https://github.com/autoric/express-train)
 
-https://github.com/autoric/express-train
+[Demo](http://nodemvc.herokuapp.com)
+
+## Screens
+[/screens/1.png]
