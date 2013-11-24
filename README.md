@@ -6,7 +6,7 @@ This is a graphical tool to generate scaffolding for [Express-Train](https://git
 
 ## Screens
 ![Screenshot1](/screens/1.png)
-![Screenshot2](/screens/2.png)
+![Screenshot2](/screens/4.png)
 ![Screenshot3](/screens/3.png)
 
 ## Todo
