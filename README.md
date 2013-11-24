@@ -2,7 +2,7 @@
 
 This is a graphical tool to generate scaffolding for [Express-Train](https://github.com/autoric/express-train). Let's you specify models, views, controllers, and dependencies. Gives you files to download. Currently the scaffolding is built for Mongoose and Coffeescript, but you can use express train with many other technologies.
 
-[Demo](http://nodemvc.herokuapp.com)
+## [Demo](http://nodemvc.herokuapp.com)
 
 ## Screens
 ![Screenshot1](/screens/1.png)
