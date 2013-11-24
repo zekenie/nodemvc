@@ -14,7 +14,8 @@
     "lodash":"*",
     "request":"*",
     "unzip":"*",
-    "bower":"*"
+    "bower":"*",
+    "npm":"*"
   },
   "devDependencies": {
     "mocha": "latest"
