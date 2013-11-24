@@ -11,6 +11,9 @@ module.exports = ->
 		index: (req, res, next) ->
 			res.json npmArray
 		search: (req,res,next) ->
-			filtered = npmArray.filter (el)->
-				el.indexOf(req.query.q) is 0
-			res.json filtered
+			if npmArray.length > 0
+				filtered = npmArray.filter (el)->
+					el.indexOf(req.query.q) is 0
+				res.json filtered
+			else
+				res.json []
