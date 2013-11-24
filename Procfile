@@ -1,1 +1,1 @@
-web: ./node_modules/npm/bin/npm start
+web: npm start
