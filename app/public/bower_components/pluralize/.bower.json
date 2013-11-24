@@ -1,0 +1,17 @@
+{
+  "name": "pluralize",
+  "main": [
+    "./index.js"
+  ],
+  "dependencies": {},
+  "homepage": "https://github.com/blakeembrey/pluralize",
+  "_release": "80ec58f1cc",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "80ec58f1cc822c0023f516033af4d01279dba365"
+  },
+  "_source": "git://github.com/blakeembrey/pluralize.git",
+  "_target": "*",
+  "_originalSource": "pluralize"
+}

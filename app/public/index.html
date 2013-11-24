@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/typeahead.css">
+	<style>
+	.tt-dropdown-menu {
+   width:100%;
+}
+
+.twitter-typeahead {
+  width: 100%;
+}
+.tt-query{
+	background-color:white!important;
+}
+	h3{margin-top:5px;}
+	textarea{
+		min-height: 180px
+	}
+
+	.controller {
+		margin-bottom:2em;
+	}
+
+	.view {
+		margin-bottom:1em;
+		border-bottom:1px solid #eee;
+		padding-bottom:1em;
+	}
+
+	.view:last-child {
+		margin-bottom:0;
+		border-bottom:0;
+		padding-bottom:0;
+	}
+
+	.methodSelect{width:100%;}
+	.methodSelect label{
+		width:25%;
+	}
+
+	.methodSelect label {
+		margin-left:0!important;
+		border-top-right-radius: 0;
+		border-top-left-radius: 0;
+	}
+
+	.panel-heading input{
+		width:50%;
+		border:0;
+		background:none;
+		font-weight: bold
+	}
+
+	.panel-heading input:focus{
+		outline:0;
+	}
+
+	tr .delete button{
+		opacity:0;
+		transition:opacity .4s;
+	}
+
+	tr:hover .delete button {
+		opacity:1;
+	}
+	#header{
+		z-index: 3;
+		position:fixed;
+		width:100%;
+		padding:8px;
+		background:#eee;
+		height:49px;
+		border-bottom:1px solid #999;
+	}
+	.nav-pills li a{
+		padding-top:6px;
+		padding-bottom:6px;
+	}
+	.tab-content{
+		padding:10px;
+		padding-top:49px;
+	}
+	.page-header{
+		margin-top:10px;
+	}
+	.mclose{
+		z-index: 1010 !important;
+		padding: 2px;
+		padding-top:5px;
+		background: #ff3019; /* Old browsers */
+		background: -moz-linear-gradient(top, #ff3019 0%, #cf0404 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff3019), color-stop(100%,#cf0404)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #ff3019 0%,#cf0404 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #ff3019 0%,#cf0404 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top, #ff3019 0%,#cf0404 100%); /* IE10+ */
+		background: linear-gradient(to bottom, #ff3019 0%,#cf0404 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 ); /* IE6-9 */  color: white;
+		position: relative;
+		border-radius: 50%;
+		font-family: Arial, verdana, tahoma;
+		font-size: 13px;
+		font-weight: bold;
+		text-align: center;
+		width: 29px;
+		border: 3px solid white;
+		box-shadow: 0px 2px 5px rgba(0,0,0,0.4);
+		text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+		left: -16px;
+		top: -16px;
+		opacity: 0;
+		transition:opacity .4s;
+		cursor: pointer;
+	}
+	.controller:hover .mclose {
+		opacity: 0.4;
+	}
+	.mclose:hover{
+		opacity: 1!important;
+	}
+	.controller-name{
+		margin-left: -14px;
+	}
+	.dark {
+		background:#226267;
+		margin-top:0;
+		padding-top:10px;
+		padding-bottom:10px;
+	}
+	</style>
+	</head>
+<body>
+	<div id="main">
+
+	</div>
+	<script>var module = {}</script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.3.0/lodash.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+	<script src="/bower_components/rivets/dist/rivets.min.js"></script>
+	<script src="/bower_components/jszip/jszip.min.js"></script>
+	<script src="/bower_components/pluralize/index.js"></script>
+	<script src="/bower_components/hogan/web/builds/2.0.0/hogan-2.0.0.min.js"></script>
+	<script src="/bower_components/typeahead.js/dist/typeahead.min.js"></script>
+	<script src="/ejs_production.js"></script>
+	<script>
+	var words = {
+		"entity":"entities",
+		"model":"models",
+		"hook":"hooks",
+		"method":"methods",
+		"property":"properties",
+		"project":"projects",
+		"view":"views",
+		"controller":"controllers",
+	};
+	var classes = {};
+	rivets.formatters.prepend = function(val,toCat){
+	  return toCat + val;
+	}
+	var codeSafe = function(value) {
+		value = value || '';
+		return value.split(' ').join('_')
+	};
+	var firstCap = function(value) {
+		value = codeSafe(value);
+		value = value.charAt(0).toUpperCase() + value.slice(1)
+		return value;
+	};
+	var firstLower = function(value) {
+		value = codeSafe(value);
+		value = value.charAt(0).toLowerCase() + value.slice(1)
+		return value;
+	};
+	rivets.formatters.codeSafe = {
+		read:codeSafe,
+		publish:codeSafe
+	};
+	rivets.formatters.firstCap = {read:firstCap,publish:firstCap};
+	rivets.formatters.firstLower = {read:firstLower,publish:firstLower};
+	rivets.formatters.lineToArray = {
+		read:function(val) {
+			val = val || [];
+			return val.join('\n')
+		},
+		publish:function(val) {
+			val = val || '';
+			return val.split(' ').join('_').split('\n')
+		}
+	};
+
+	rivets.binders.input = {
+		publishes: true,
+		routine: rivets.binders.value.routine,
+		bind: function(el) {
+			el.addEventListener('input', this.publish)
+		},
+		unbind: function(el) {
+			el.removeEventListener('input', this.publish)
+		}
+	};
+
+	rivets.adapters['.'] = {
+		subscribe: function(obj, keypath, callback) {
+			obj.on('change:' + keypath, callback);
+		},
+		unsubscribe: function(obj, keypath, callback) {
+			obj.off('change:' + keypath, callback);
+		},
+		read: function(obj, keypath) {
+			return obj[keypath];
+		},
+		publish: function(obj, keypath, value) {
+			obj.set(keypath, value);
+		}
+	}
+	</script>
+	<script src="./lib/base.js"></script>
+	<script>
+	$.ajaxSetup({
+	  cache: true
+	});
+	var finishCounter = 0,
+	numWords = Object.keys(words).length-2;
+	for(file in words) {
+		document.write('<' + 'script src="./lib/' + file + '.js"></' + 'script>')
+	}
+	</script>
+	<script>
+		var project  = new classes.Project({},window);
+	</script>
+</body>
+</html>

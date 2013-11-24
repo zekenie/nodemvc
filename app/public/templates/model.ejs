@@ -1,0 +1,28 @@
+mongoose = require 'mongoose'
+Schema = mongoose.Schema
+
+module.exports = (dal)->
+	<%=plural%>Schema = new Schema { <% model.properties.forEach(function(p) { %>
+		<%=p.key%>: <% if(p.array === true) {%>[<% } %>{type:<%=p.type%><% if(p.ref !== ''){%>, ref:<%=p.ref%><%}%>}<% if(p.array === true){ %>]<% } %><% }); %>
+	}
+	<% model.hooks.forEach(function(hook) { %>
+		<%=plural%>Schema.<%=hook.type%> '<%=hook.action%>',<% if(hook.type === 'pre') { %>(next)<%}%>->
+			# <%=hook.comment%>
+	<% });%>
+
+	<% model.instance.forEach(function(i) { %>
+	<%=plural%>Schema.methods.<%=i%> = (cb)->
+		cb()
+	<% });%>
+
+	<% model.statics.forEach(function(s) { %>
+	<%=plural%>Schema.statics.<%=s%> = (cb)->
+		cb()
+	<% });%>
+
+	<% model.virtuals.forEach(function(v) { %>
+	<%=plural%>Schema.virtual('<%=v%>').get ->
+		# Document can be accessed through `this`
+	<% });%>
+
+	mongoose.model '<%=plural%>', <%=plural%>Schema

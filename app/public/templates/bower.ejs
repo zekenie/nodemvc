@@ -1,0 +1,14 @@
+{
+  "name": "<%=name%>",
+  "version": "0.0.1",
+  "dependencies": {<% this.forEach(function(dep,i) { %><% if(i !== 0){%>,<% } %>
+    "<%=dep%>":"*"<% }); %>
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

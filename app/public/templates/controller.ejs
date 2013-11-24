@@ -1,0 +1,17 @@
+module.exports. = (app,config)->
+	controller = {}
+	controller.load = (req,res,next,id)->
+		<%=plural%>.findById id, (err,<%=singular%>)->
+			return next err if err?
+			return res.send 404 if not <%=singular%>?
+			req.<%=singular%> = <%=singular%>
+			next()
+<% controllers.forEach(function(c) { %>
+	controller.<%=c.name%> = [
+		((req,res,next)->
+			<% if(c.res === 'html'){ %>res.render <%=c.view%><% } %>
+			<% if(c.res === 'json'){ %>res.json {}<% } %>
+		)
+	]
+<% }); %>
+	controller

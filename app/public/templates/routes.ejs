@@ -1,0 +1,8 @@
+module.exports = (app<% this.forEach(function(i){%>,<%=i.plural%>Controller<% }); %>)->
+<% this.forEach(function(i){%>
+	#--- <%=i.plural%> ---#
+<%i.controllers.forEach(function(c) { %>
+	app.<%=c.method%> '<%=c.route%>',<%=i.plural%>Controller.<%=c.name%>
+<% }); %>
+	app.param '<%=i.singular%>Id',<%=i.plural%>Controller.load
+<% }); %>

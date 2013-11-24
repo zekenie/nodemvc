@@ -1,0 +1,13 @@
+{
+  "name": "ejs",
+  "_cacheHeaders": {
+    "Last-Modified": "Wed, 28 Oct 2009 17:51:23 GMT",
+    "Content-Length": "10214",
+    "Content-Type": "application/x-zip",
+    "Content-Disposition": "attachment; filename=\"ejs_1.0_developer.zip\""
+  },
+  "main": "index.zip",
+  "_source": "http://embeddedjavascript.googlecode.com/files/ejs_1.0_developer.zip",
+  "_target": "*",
+  "_originalSource": "http://embeddedjavascript.googlecode.com/files/ejs_1.0_developer.zip"
+}
