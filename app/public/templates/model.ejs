@@ -1,9 +1,9 @@
 mongoose = require 'mongoose'
 Schema = mongoose.Schema
 
-module.exports = (dal)->
+module.exports = ->
 	<%=plural%>Schema = new Schema { <% model.properties.forEach(function(p) { %>
-		<%=p.key%>: <% if(p.array === true) {%>[<% } %>{type:<%=p.type%><% if(p.ref !== ''){%>, ref:<%=p.ref%><%}%>}<% if(p.array === true){ %>]<% } %><% }); %>
+		<%=p.key%>: <% if(p.array === true) {%>[<% } %>{type:<%=p.type%><% if(p.ref !== ''){%>, ref:"<%=p.ref%>"<%}%>}<% if(p.array === true){ %>]<% } %><% }); %>
 	}
 	<% model.hooks.forEach(function(hook) { %>
 		<%=plural%>Schema.<%=hook.type%> '<%=hook.action%>',<% if(hook.type === 'pre') { %>(next)<%}%>->

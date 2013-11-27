@@ -20,7 +20,7 @@
 				<td class="delete" width="9%"><button data-grab="deleteBtn" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>\
 			</tr>';
 
-  possibleTypes = ["String", "Number", "Boolean", "Array", "Buffer", "Date", "ObjectId", "Mixed"];
+  possibleTypes = ["String", "Number", "Boolean", "Array", "Buffer", "Date", "Schema.ObjectId", "Schema.Mixed"];
 
   Property = (function(_super) {
     __extends(Property, _super);

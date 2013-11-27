@@ -54,6 +54,7 @@ class Project extends classes.Base
 			    "express-train"
 			    "express-hbs"
 			    "coffee-script"
+			    "mongoose"
 			]
 			},data
 		@el = $(_.template(template,@));
@@ -63,11 +64,7 @@ class Project extends classes.Base
 		@addEventListeners()
 
 	addEntity:->
-		# name = window.prompt('Please name the entity (eg users,comments)').split(' ').join '_'
-
 		index = @entities.push new classes.Entity {},@
-		console.log @entities[index-1]
-
 		@trigger 'addEntityEvt'
 
 	toJSON:->
@@ -76,7 +73,7 @@ class Project extends classes.Base
 	download:->
 		prj = @toJSON()
 		zip = new JSZip();
-		zip.file '/pubilc/bower.json', new EJS({url:'./templates/bower.ejs'}).render @bower
+		zip.file 'bower.json', new EJS({url:'./templates/bower.ejs'}).render @bower
 		zip.file 'package.json', new EJS({url:'./templates/package.ejs'}).render @npm
 		zip.file 'lib/routes.coffee', new EJS({url:'./templates/routes.ejs'}).render prj
 		for entity in prj
@@ -85,7 +82,6 @@ class Project extends classes.Base
 		location.href = 'data:application/zip;base64,' + zip.generate()
 
 	addDependency:(type,dep)->
-		console.log(dep)
 		@[type].push dep
 		@set type,@[type]
 
@@ -110,7 +106,6 @@ class Project extends classes.Base
 		]
 		@typeahead.on 'typeahead:selected',(e,selected,type)->
 			self.addDependency type, selected.value || selected.name
-			console.log @
 			@.value = ''
 
 

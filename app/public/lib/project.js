@@ -56,7 +56,7 @@
         name: 'myProject',
         entities: [],
         bower: [],
-        npm: ["express", "express-train", "express-hbs", "coffee-script"]
+        npm: ["express", "express-train", "express-hbs", "coffee-script", "mongoose"]
       }, data);
       this.el = $(_.template(template, this));
       Project.__super__.constructor.apply(this, arguments);
@@ -68,7 +68,6 @@
     Project.prototype.addEntity = function() {
       var index;
       index = this.entities.push(new classes.Entity({}, this));
-      console.log(this.entities[index - 1]);
       return this.trigger('addEntityEvt');
     };
 
@@ -82,7 +81,7 @@
       var entity, prj, zip, _i, _len;
       prj = this.toJSON();
       zip = new JSZip();
-      zip.file('/pubilc/bower.json', new EJS({
+      zip.file('bower.json', new EJS({
         url: './templates/bower.ejs'
       }).render(this.bower));
       zip.file('package.json', new EJS({
@@ -104,7 +103,6 @@
     };
 
     Project.prototype.addDependency = function(type, dep) {
-      console.log(dep);
       this[type].push(dep);
       return this.set(type, this[type]);
     };
@@ -130,7 +128,6 @@
       ]);
       return this.typeahead.on('typeahead:selected', function(e, selected, type) {
         self.addDependency(type, selected.value || selected.name);
-        console.log(this);
         return this.value = '';
       });
     };

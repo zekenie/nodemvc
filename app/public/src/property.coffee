@@ -21,8 +21,8 @@ possibleTypes = [
 	"Array"
 	"Buffer"
 	"Date"
-	"ObjectId"
-	"Mixed"
+	"Schema.ObjectId"
+	"Schema.Mixed"
 ]
 
 class Property extends classes.Base

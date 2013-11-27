@@ -1,4 +1,4 @@
-module.exports. = (app,config)->
+module.exports = (app,config)->
 	controller = {}
 	controller.load = (req,res,next,id)->
 		<%=plural%>.findById id, (err,<%=singular%>)->
