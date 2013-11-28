@@ -1,0 +1,24 @@
+{
+  "name": "mvc",
+  "version": "0.0.0",
+  "authors": [
+    "Zeke Nierenberg <zeke@trext.me>"
+  ],
+  "dependencies":{
+    "rivets":"*",
+    "jszip":"*",
+    "pluralize":"*",
+    "typeahead.js":"*",
+    "hogan":"*",
+    "ejs":"http://embeddedjavascript.googlecode.com/files/ejs_1.0_developer.zip"
+  },
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
