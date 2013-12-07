@@ -60,7 +60,7 @@ class Property extends classes.Base
 
 		@typeSelect.on 'change', ->
 			self.refSelect.addClass 'hide'
-			self.refSelect.removeClass 'hide' if @.value is 'ObjectId'
+			self.refSelect.removeClass 'hide' if @.value is 'Schema.Types.ObjectId'
 
 		@deleteBtn.on 'click',->
 			self.remove();
