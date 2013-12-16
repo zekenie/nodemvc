@@ -20,7 +20,7 @@
 				<td class="delete" width="9%"><button data-grab="deleteBtn" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>\
 			</tr>';
 
-  possibleTypes = ["String", "Number", "Boolean", "Array", "Buffer", "Date", "Schema.ObjectId", "Schema.Mixed"];
+  possibleTypes = ["String", "Number", "Boolean", "Array", "Buffer", "Date", "Schema.Types.ObjectId", "Schema.Types.Mixed"];
 
   Property = (function(_super) {
     __extends(Property, _super);
@@ -76,7 +76,7 @@
       });
       this.typeSelect.on('change', function() {
         self.refSelect.addClass('hide');
-        if (this.value === 'ObjectId') {
+        if (this.value === 'Schema.Types.ObjectId') {
           return self.refSelect.removeClass('hide');
         }
       });

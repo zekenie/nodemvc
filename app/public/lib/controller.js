@@ -41,7 +41,7 @@
 						<input type="radio" rv-checked="method" value="put"> PUT\
 					</label>\
 					<label class="btn btn-primary">\
-						<input type="radio" rv-checked="method" value="delete"> DEL\
+						<input type="radio" rv-checked="method" value="del"> DEL\
 					</label>\
 				</div>';
 
