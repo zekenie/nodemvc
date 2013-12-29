@@ -3,8 +3,9 @@ _ = require 'lodash'
 npmArray = []
 request.get 'http://registry.npmjs.org/-/all/',{json:true},(err,resp,body)->
 	throw err if err
-	npmArray = Object.keys body or {}
-	console.log 'done loading npm stuff'
+	if _.isObject body
+		npmArray = Object.keys body or {}
+		console.log 'done loading npm stuff'
 
 module.exports = ->
 	controller =
