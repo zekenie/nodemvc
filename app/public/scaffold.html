@@ -184,7 +184,9 @@
 		},
 		publish:function(val) {
 			val = val || '';
-			return val.split(' ').join('_').split('\n')
+			return val.split(' ').join('_').split('\n').filter(function(i) {
+				return i !== "";
+			});
 		}
 	};
 

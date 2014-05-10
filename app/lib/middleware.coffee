@@ -1,7 +1,7 @@
 express = require "express"
 
-module.exports = (app) -> 
-    errorConfig = 
+module.exports = (app) ->
+    errorConfig =
         dumpExceptions: true
         showStack: true
 
@@ -11,7 +11,6 @@ module.exports = (app) ->
     app.use express.cookieParser()
     app.use express.bodyParser()
     app.use express.methodOverride()
-    app.use app.router
-    app.use (req, res, next) -> 
+    app.use (req, res, next) ->
         res.send 404
     app.use error_middleware
