@@ -8,10 +8,9 @@ module.exports = (app,config)->
 			next()
 <% controllers.forEach(function(c) { %>
 	controller.<%=c.name%> = [
-		((req,res,next)->
+		(req,res,next)->
 			<% if(c.res === 'html'){ %>res.render "<%=c.view%>"<% } %>
 			<% if(c.res === 'json'){ %>res.json {}<% } %>
-		)
 	]
 <% }); %>
 	controller
