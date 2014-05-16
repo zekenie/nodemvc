@@ -73,6 +73,7 @@ class Project extends classes.Base
 	download:->
 		prj = @toJSON()
 		zip = new JSZip();
+		zip.file 'nodemvc.json', JSON.stringify prj
 		zip.file 'bower.json', new EJS({url:'./templates/bower.ejs'}).render @bower
 		zip.file 'package.json', new EJS({url:'./templates/package.ejs'}).render @npm
 		zip.file 'lib/routes.coffee', new EJS({url:'./templates/routes.ejs'}).render prj
